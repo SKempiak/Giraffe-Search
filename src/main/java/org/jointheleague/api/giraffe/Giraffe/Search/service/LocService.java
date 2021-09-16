@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public class LocService {
 
     public String getResults(String query){
-        return "Searching for D&D stuff to " + query;
+        return "Searching for book stuff to " + query;
     }
 
 }
