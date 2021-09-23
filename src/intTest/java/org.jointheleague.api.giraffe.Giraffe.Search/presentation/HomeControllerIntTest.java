@@ -23,4 +23,4 @@ class HomeControllerIntTest {
                 .andExpect(status().isMovedPermanently())
                 .andExpect(redirectedUrl("swagger-ui.html"));
     }
-}  }
+}
