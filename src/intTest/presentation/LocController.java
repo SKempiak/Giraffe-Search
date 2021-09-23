@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
 @RestController
 public class LocController {
 
@@ -28,7 +27,7 @@ public class LocController {
             @ApiResponse(code = 404, message = "Result(s) not found")
     })
     public String getResults(@RequestParam(value="q") String query){
-        return locService.getResults(query);
+        return "Searching for books related to " + query;
     }
 
 }
