@@ -1,13 +1,14 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.repository;
 
-
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Repository
 public class LocRepo {
+
     private final WebClient webClient;
-private static final String baseUrl = "http://localhost:5000/v2/api-docs";
+
+    private static final String baseUrl = "https://www.loc.gov/books";
 
     public LocRepo() {
         webClient = WebClient
@@ -28,4 +29,6 @@ private static final String baseUrl = "http://localhost:5000/v2/api-docs";
                 .bodyToMono(String.class)
                 .block();
     }
+
+
 }
