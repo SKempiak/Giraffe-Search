@@ -1,12 +1,18 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.presentation;
 
+import org.junit.jupiter.api.BeforeEach;
+
+import static org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class HomeControllerTest {
+    private HomeController homeController;
 
-    @org.junit.jupiter.api.BeforeEach
+    @BeforeEach
     void setUp() {
-    HomeController h=new HomeController();
+    homeController=new HomeController();
     }
 
     @Test
@@ -15,7 +21,7 @@ class HomeControllerTest {
         String expected = "redirect:swagger-ui.html";
 
         //when
-        String actual = h.home();
+        String actual = homeController.home();
         //then
 
         assertEquals(expected, actual);
