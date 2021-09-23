@@ -5,7 +5,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Repository
 public class LocRepo {
-
     private final WebClient webClient;
 
     private static final String baseUrl = "https://www.loc.gov/books";
@@ -16,6 +15,7 @@ public class LocRepo {
                 .baseUrl(baseUrl)
                 .build();
     }
+
 
     public String getResults(String query) {
         return webClient.get()
