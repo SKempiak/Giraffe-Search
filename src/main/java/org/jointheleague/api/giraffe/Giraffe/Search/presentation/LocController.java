@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
+
 @RestController
 public class LocController {
 
     private final LocService locService;
 
     public LocController(LocService locService) {
+
         this.locService = locService;
     }
 
@@ -29,5 +31,4 @@ public class LocController {
     public String getResults(@RequestParam(value="q") String query){
         return "Searching for books related to " + query;
     }
-
 }
