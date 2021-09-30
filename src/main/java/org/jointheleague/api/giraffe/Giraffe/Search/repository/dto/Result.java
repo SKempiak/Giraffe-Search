@@ -37,4 +37,5 @@ public class Result {
     public void setLink(String link) {
         this.link = link;
     }
+
 }
