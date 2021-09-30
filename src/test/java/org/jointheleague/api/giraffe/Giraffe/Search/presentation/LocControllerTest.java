@@ -1,60 +1,71 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.presentation;
-
-
-import org.junit.jupiter.api.BeforeEach;
+import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
+import org.jointheleague.api.giraffe.Giraffe.Search.service.LocService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.Collections;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-class LocControllerTest {
+@WebMvcTest(LocController.class)
+class LocControllerIntTest {
 
-    private LocController locController;
+    @Autowired
+    private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private LocService locService;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-
-        locController = new LocController(locService);
-    }
-
     @Test
-    void givenGoodQuery_whenGetResults_thenReturnListOfResults() {
+    public void givenGoodQuery_whenSearchForResults_thenIsOkAndReturnsResults() throws Exception {
         //given
         String query = "Java";
+        String title = "Java: A Drink, an Island, and a Programming Language";
+        String author = "AUTHOR";
+        String link = "LINK";
         Result result = new Result();
-        result.setTitle("TITLE");
-        result.setLink("LINK");
-        result.setAuthors(Collections.singletonList("AUTHORS"));
+        result.setTitle(title);
+        result.setAuthors(Collections.singletonList(author));
+        result.setLink(link);
         List<Result> expectedResults = Collections.singletonList(result);
 
-        when(locService.getResults(query))
-                .thenReturn(expectedResults);
+        when(locService.getResults(query)).thenReturn(expectedResults);
 
         //when
-        List<Result> actualResults = locController.getResults(query);
-
         //then
-        assertEquals(expectedResults, actualResults);
+        MvcResult mvcResult = mockMvc.perform(get("/searchLocResults?q=" + query))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].title", is(title)))
+                .andExpect(jsonPath("$[0].authors[0]", is(author)))
+                .andExpect(jsonPath("$[0].link", is(link)))
+                .andReturn();
+
+        assertEquals(MediaType.APPLICATION_JSON_VALUE, mvcResult.getResponse().getContentType());
     }
 
     @Test
-    void givenBadQuery_whenGetResults_thenThrowsException() {
+    public void givenBadQuery_whenSearchForResults_thenIsNotFound() throws Exception {
         //given
         String query = "Java";
 
         //when
         //then
-        Throwable exceptionThrown = assertThrows(ResponseStatusException.class, () -> locController.getResults(query));
-        assertEquals(exceptionThrown.getMessage(), "404 NOT_FOUND \"Result(s) not found.\"");
+        mockMvc.perform(get("/searchLocResults?q=" + query))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
-
 }
