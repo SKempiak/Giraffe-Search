@@ -1,6 +1,8 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.presentation;
 
 
+import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
+import org.jointheleague.api.giraffe.Giraffe.Search.service.LocService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -8,6 +10,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
