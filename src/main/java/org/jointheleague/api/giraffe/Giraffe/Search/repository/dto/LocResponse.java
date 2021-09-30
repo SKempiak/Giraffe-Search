@@ -1,9 +1,16 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.repository.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+
+
+
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class LocResponse {
     private List<Result> results = null;
@@ -17,4 +24,5 @@ public class LocResponse {
     public void setResults(List<Result> results) {
         this.results = results;
     }
+
 }
