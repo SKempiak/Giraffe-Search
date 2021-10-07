@@ -1,6 +1,8 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.presentation;
+
 import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 import org.jointheleague.api.giraffe.Giraffe.Search.service.LocService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
