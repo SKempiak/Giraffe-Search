@@ -1,11 +1,8 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.presentation;
 
-import org.mockito.Mock;
 import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 import org.jointheleague.api.giraffe.Giraffe.Search.service.LocService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -25,20 +22,51 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @WebMvcTest(LocController.class)
-public class LocControllerIntTest {
+class LocControllerIntTest {
+
     @Autowired
     private MockMvc mockMvc;
 
-    private LocController locController;
-
-    @Mock
+    @MockBean
     private LocService locService;
-    List<Result> actualResults = = LocController.getResults(query);
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        locController = new LocController(locService);
+    @Test
+    public void givenGoodQuery_whenSearchForResults_thenIsOkAndReturnsResults() throws Exception {
+        //given
+        String query = "Java";
+        String title = "Java: A Drink, an Island, and a Programming Language";
+        String author = "AUTHOR";
+        String link = "LINK";
+        Result result = new Result();
+        result.setTitle(title);
+        result.setAuthors(Collections.singletonList(author));
+        result.setLink(link);
+        List<Result> expectedResults = Collections.singletonList(result);
+
+        when(locService.getResults(query)).thenReturn(expectedResults);
+
+        //when
+        //then
+        MvcResult mvcResult = mockMvc.perform(get("/searchLocResults?q=" + query))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].title", is(title)))
+                .andExpect(jsonPath("$[0].authors[0]", is(author)))
+                .andExpect(jsonPath("$[0].link", is(link)))
+                .andReturn();
+
+        assertEquals(MediaType.APPLICATION_JSON_VALUE, mvcResult.getResponse().getContentType());
     }
 
+    @Test
+    public void givenBadQuery_whenSearchForResults_thenIsNotFound() throws Exception {
+        //given
+        String query = "Java";
+
+        //when
+        //then
+        mockMvc.perform(get("/searchLocResults?q=" + query))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
 }

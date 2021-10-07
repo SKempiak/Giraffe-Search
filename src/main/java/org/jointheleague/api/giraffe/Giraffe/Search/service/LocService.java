@@ -12,10 +12,11 @@ public class LocService {
     private final LocRepo locRepository;
 
     public LocService(LocRepo locRepository) {
+
         this.locRepository = locRepository;
     }
 
-    public List<Result> getResults(String query){
+    public List<Result> getResults(String query) {
         return locRepository.getResults(query);
     }
 

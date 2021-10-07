@@ -1,36 +1,34 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.service;
 
-import org.jointheleague.api.giraffe.Giraffe.Search.presentation.LocController;
+import org.jointheleague.api.giraffe.Giraffe.Search.repository.LocRepo;
 import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-@Service
-public class LocServiceTest {
-    private LocController locController;
+class LocServiceTest {
+
+    private LocService locService;
 
     @Mock
-    private LocService locService;
+    private LocRepo locRepository;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        locController = new LocController(locService);
+        locService = new LocService(locRepository);
     }
+
     @Test
-    void givenGoodQuery_whenGetResults_thenReturnListOfResults() {
+    void whenGetResults_thenReturnListOfResults() {
         //given
         String query = "Java";
         Result result = new Result();
@@ -39,25 +37,13 @@ public class LocServiceTest {
         result.setAuthors(Collections.singletonList("AUTHORS"));
         List<Result> expectedResults = Collections.singletonList(result);
 
-        when(locService.getResults(query))
+        when(locRepository.getResults(query))
                 .thenReturn(expectedResults);
 
         //when
-        List<Result> actualResults = locController.getResults(query);
+        List<Result> actualResults = locService.getResults(query);
 
         //then
         assertEquals(expectedResults, actualResults);
     }
-    @Test
-    void givenBadQuery_whenGetResults_thenThrowsException() {
-        //given
-        String query = "Java";
-
-        //when
-        //then
-        Throwable exceptionThrown = assertThrows(ResponseStatusException.class, () -> locController.getResults(query));
-        assertEquals(exceptionThrown.getMessage(), "404 NOT_FOUND \"Result(s) not found.\"");
-    }
-
 }
-
