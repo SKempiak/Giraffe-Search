@@ -1,45 +1,61 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.presentation;
-
-
+import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
+import org.jointheleague.api.giraffe.Giraffe.Search.service.LocService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.web.server.ResponseStatusException;
 
-import static org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Test;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
-class HomeControllerTest {
-    private HomeController homeController;
+class LocControllerTest {
+
+    private LocController locController;
+
+    @Mock
+    private LocService locService;
 
     @BeforeEach
     void setUp() {
-    homeController=new HomeController();
+        MockitoAnnotations.openMocks(this);
+
+        locController = new LocController(locService);
     }
 
     @Test
-    void whenHome_thenReturnRedirect() {
+    void givenGoodQuery_whenGetResults_thenReturnListOfResults() {
         //given
-        String expected = "redirect:swagger-ui.html";
+        String query = "Java";
+        Result result = new Result();
+        result.setTitle("TITLE");
+        result.setLink("LINK");
+        result.setAuthors(Collections.singletonList("AUTHORS"));
+        List<Result> expectedResults = Collections.singletonList(result);
+
+        when(locService.getResults(query))
+                .thenReturn(expectedResults);
 
         //when
-        String actual = homeController.home();
+        List<Result> actualResults = locController.getResults(query);
+
         //then
+        assertEquals(expectedResults, actualResults);
+    }
 
-        assertEquals(expected, actual);
+    @Test
+    void givenBadQuery_whenGetResults_thenThrowsException() {
+        //given
+        String query = "Java";
 
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-@Controller
-public class HomeControllerTest {
-
-    @GetMapping("/")
-    @ResponseStatus(HttpStatus.MOVED_PERMANENTLY)
-    public String home(){
-        return "redirect:swagger-ui.html";
-
+        //when
+        //then
+        Throwable exceptionThrown = assertThrows(ResponseStatusException.class, () -> locController.getResults(query));
+        assertEquals(exceptionThrown.getMessage(), "404 NOT_FOUND \"Result(s) not found.\"");
     }
 
 }
