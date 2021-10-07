@@ -1,61 +1,33 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.presentation;
-import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
-import org.jointheleague.api.giraffe.Giraffe.Search.service.LocService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Collections;
-import java.util.List;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+@WebMvcTest(HomeController.class)
+class HomeControllerIntTest {
+    @Autowired
+    private MockMvc mockMvc;
 
-class LocControllerTest {
-
-    private LocController locController;
-
-    @Mock
-    private LocService locService;
+    private HomeController homeController;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
-
-        locController = new LocController(locService);
+        homeController = new HomeController();
     }
 
     @Test
-    void givenGoodQuery_whenGetResults_thenReturnListOfResults() {
-        //given
-        String query = "Java";
-        Result result = new Result();
-        result.setTitle("TITLE");
-        result.setLink("LINK");
-        result.setAuthors(Collections.singletonList("AUTHORS"));
-        List<Result> expectedResults = Collections.singletonList(result);
-
-        when(locService.getResults(query))
-                .thenReturn(expectedResults);
-
-        //when
-        List<Result> actualResults = locController.getResults(query);
-
-        //then
-        assertEquals(expectedResults, actualResults);
+    public void whenHome_ThenReturnMovedPermanentlyAndRedirect() throws Exception {
+        mockMvc.perform(get("/"))
+                .andDo(print())
+                .andExpect(status().isMovedPermanently())
+                .andExpect(redirectedUrl("swagger-ui.html"));
     }
-
-    @Test
-    void givenBadQuery_whenGetResults_thenThrowsException() {
-        //given
-        String query = "Java";
-
-        //when
-        //then
-        Throwable exceptionThrown = assertThrows(ResponseStatusException.class, () -> locController.getResults(query));
-        assertEquals(exceptionThrown.getMessage(), "404 NOT_FOUND \"Result(s) not found.\"");
-    }
-
 }

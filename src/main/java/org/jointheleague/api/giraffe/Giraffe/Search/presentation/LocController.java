@@ -3,7 +3,6 @@ package org.jointheleague.api.giraffe.Giraffe.Search.presentation;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
 import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 import org.jointheleague.api.giraffe.Giraffe.Search.service.LocService;
 import org.springframework.http.HttpStatus;
