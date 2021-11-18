@@ -1,10 +1,8 @@
-package org.jointheleague.api.giraffe.Giraffe.Search.Repository;
+package org.jointheleague.level7.giraffe.Giraffe.Search.Repository;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-
-import org.jointheleague.api.giraffe.Giraffe.Search.repository.LocRepo;
-import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.LocResponse;
-import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
+import org.jointheleague.level7.giraffe.repository.LocRepository;
+import org.jointheleague.level7.giraffe.repository.dto.LocResponse;
+import org.jointheleague.level7.giraffe.repository.dto.Result;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -24,7 +22,7 @@ import static org.mockito.Mockito.when;
 
 class LocRepositoryTest {
 
-    private LocRepo locRepository;
+    private LocRepository locRepository;
 
     @Mock
     WebClient webClientMock;
@@ -45,7 +43,7 @@ class LocRepositoryTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        locRepository = new LocRepo(webClientMock);
+        locRepository = new LocRepository(webClientMock);
     }
 
     @Test

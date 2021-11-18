@@ -1,4 +1,4 @@
-package org.jointheleague.api.giraffe.Giraffe.Search.config;
+package org.jointheleague.level7.giraffe.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +18,8 @@ public class ApiDocConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "Level 7 Cheetah Search",
-                "League of Amazing Programmers Level 7 Cheetah Search",
+                "Level 7 Giraffe Search",
+                "League of Amazing Programmers Level 7 Giraffe Search",
                 "1.0.0",
                 null,
                 new Contact("Matt Freedman", "www.jointheleague.org", "matt.freedman@jointheleague.org"),

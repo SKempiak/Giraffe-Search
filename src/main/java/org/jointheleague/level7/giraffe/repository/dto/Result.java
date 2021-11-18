@@ -1,4 +1,4 @@
-package org.jointheleague.api.giraffe.Giraffe.Search.repository.dto;
+package org.jointheleague.level7.giraffe.repository.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 
