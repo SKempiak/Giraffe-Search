@@ -54,9 +54,9 @@ class LocRepositoryTest {
         String query = "Java";
         LocResponse locResponse = new LocResponse();
         Result result = new Result();
-        result.setTitle("Java: A Drink, an Island, and a Programming Language");
-        result.setAuthors(Collections.singletonList("AUTHOR"));
-        result.setLink("LINK");
+//        result.setTitle("Java: A Drink, an Island, and a Programming Language");
+//        result.setAuthors(Collections.singletonList("AUTHOR"));
+//        result.setLink("LINK");
         List<Result> expectedResults = Collections.singletonList(result);
         locResponse.setResults(expectedResults);
 

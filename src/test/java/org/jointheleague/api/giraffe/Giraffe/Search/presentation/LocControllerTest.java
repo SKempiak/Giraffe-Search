@@ -45,13 +45,13 @@ class LocControllerIntTest {
     public void givenGoodQuery_whenSearchForResults_thenIsOkAndReturnsResults() throws Exception {
         //given
         String query = "Java";
-        String title = "Java: A Drink, an Island, and a Programming Language";
+        String index = "Java: A Drink, an Island, and a Programming Language";
         String author = "AUTHOR";
         String link = "LINK";
         Result result = new Result();
-        result.setTitle(title);
-        result.setAuthors(Collections.singletonList(author));
-        result.setLink(link);
+        result.setIndex(index);
+        result.setName(author);
+        result.setIndex(link);
         List<Result> expectedResults = Collections.singletonList(result);
 
         when(locService.getResults(query)).thenReturn(expectedResults);
@@ -61,7 +61,7 @@ class LocControllerIntTest {
         MvcResult mvcResult = mockMvc.perform(get("/searchLocResults?q=" + query))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].title", is(title)))
+                .andExpect(jsonPath("$[0].title", is(index)))
                 .andExpect(jsonPath("$[0].authors[0]", is(author)))
                 .andExpect(jsonPath("$[0].link", is(link)))
                 .andReturn();

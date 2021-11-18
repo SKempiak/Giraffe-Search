@@ -38,9 +38,9 @@ class LocControllerIntTest {
         String author = "AUTHOR";
         String link = "LINK";
         Result result = new Result();
-        result.setTitle(title);
-        result.setAuthors(Collections.singletonList(author));
-        result.setLink(link);
+//        result.setTitle(title);
+//        result.setAuthors(Collections.singletonList(author));
+//        result.setLink(link);
         List<Result> expectedResults = Collections.singletonList(result);
 
         when(locService.getResults(query)).thenReturn(expectedResults);
