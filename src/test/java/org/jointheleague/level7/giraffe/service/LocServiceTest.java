@@ -32,9 +32,9 @@ class LocServiceTest {
         //given
         String query = "Java";
         Result result = new Result();
-        result.setTitle("TITLE");
-        result.setLink("LINK");
-        result.setAuthors(Collections.singletonList("AUTHORS"));
+//        result.setTitle("TITLE");
+//        result.setLink("LINK");
+//        result.setAuthors(Collections.singletonList("AUTHORS"));
         List<Result> expectedResults = Collections.singletonList(result);
 
         when(locRepository.getResults(query))
