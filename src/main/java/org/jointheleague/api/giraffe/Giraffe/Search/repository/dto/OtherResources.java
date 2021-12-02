@@ -1,6 +1,7 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.repository.dto;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -12,50 +13,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "index",
-        "name",
-        "url"
+        "count",
+        "results"
 })
 @Generated("jsonschema2pojo")
-public class Result {
+public class OtherResources {
 
-    @JsonProperty("index")
-    private String index;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("url")
-    private String url;
+    @JsonProperty("count")
+    private Integer count;
+    @JsonProperty("results")
+    private List<Result> results = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("index")
-    public String getIndex() {
-        return index;
+    @JsonProperty("count")
+    public Integer getCount() {
+        return count;
     }
 
-    @JsonProperty("index")
-    public void setIndex(String index) {
-        this.index = index;
+    @JsonProperty("count")
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("results")
+    public List<Result> getResults() {
+        return results;
     }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @JsonProperty("url")
-    public String getUrl() {
-        return url;
-    }
-
-    @JsonProperty("url")
-    public void setUrl(String url) {
-        this.url = url;
+    @JsonProperty("results")
+    public void setResults(List<Result> results) {
+        this.results = results;
     }
 
     @JsonAnyGetter
@@ -67,5 +55,4 @@ public class Result {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-
 }
