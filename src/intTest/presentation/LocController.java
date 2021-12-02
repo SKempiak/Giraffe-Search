@@ -1,9 +1,9 @@
-package org.jointheleague.api.giraffe.Giraffe.Search.presentation;
+package org.jointheleague.level7.giraffe.presentation;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.jointheleague.api.giraffe.Giraffe.Search.service.LocService;
+import org.jointheleague.level7.giraffe.service.LocService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

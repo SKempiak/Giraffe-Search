@@ -1,4 +1,4 @@
-package org.jointheleague.api.giraffe.Giraffe.Search;
+package org.jointheleague.level7.giraffe;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

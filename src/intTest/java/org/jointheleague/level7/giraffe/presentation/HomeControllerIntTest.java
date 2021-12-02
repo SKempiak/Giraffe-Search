@@ -1,4 +1,4 @@
-package org.jointheleague.api.giraffe.Giraffe.Search.presentation;
+package org.jointheleague.level7.giraffe.presentation;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
