@@ -1,10 +1,8 @@
-package org.jointheleague.api.giraffe.Giraffe.Search.presentation;
+package org.jointheleague.level7.giraffe.presentation;
 
-import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
-import org.jointheleague.api.giraffe.Giraffe.Search.service.LocService;
-import org.junit.jupiter.api.BeforeEach;
+import org.jointheleague.level7.giraffe.repository.dto.Result;
+import org.jointheleague.level7.giraffe.service.LocService;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,20 +24,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(LocController.class)
 class LocControllerIntTest {
 
-    private LocController locController;
-
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
     private LocService locService;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-
-        locController = new LocController(locService);
-    }
 
     @Test
     public void givenGoodQuery_whenSearchForResults_thenIsOkAndReturnsResults() throws Exception {
@@ -49,9 +38,9 @@ class LocControllerIntTest {
         String author = "AUTHOR";
         String link = "LINK";
         Result result = new Result();
-        result.setTitle(title);
-        result.setAuthors(Collections.singletonList(author));
-        result.setLink(link);
+//        result.setTitle(title);
+//        result.setAuthors(Collections.singletonList(author));
+//        result.setLink(link);
         List<Result> expectedResults = Collections.singletonList(result);
 
         when(locService.getResults(query)).thenReturn(expectedResults);

@@ -12,8 +12,8 @@ import java.util.List;
 public class LocRepo {
     private final WebClient webClient;
 
-    private static final String baseUrl = "https://www.loc.gov/books";
-
+    private static final String baseUrl = "https://www.dnd5eapi.co/api/";
+    String category = "ability-scores";
     public LocRepo() {
 
         webClient = WebClient
@@ -28,9 +28,7 @@ public class LocRepo {
     public List<Result> getResults(String query) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
-                        .queryParam("fo", "json")
-                        .queryParam("at", "results")
-                        .queryParam("q", query)
+                        .path(category + "/")
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
