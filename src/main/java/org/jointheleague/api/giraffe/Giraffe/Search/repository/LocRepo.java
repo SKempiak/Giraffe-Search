@@ -6,6 +6,7 @@ import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -13,7 +14,8 @@ public class LocRepo {
     private final WebClient webClient;
 
     private static final String baseUrl = "https://www.dnd5eapi.co/api/";
-    String category = "ability-scores";
+    String[] categories = {"ability-scores","Proficiency", "Flaws", "Race", "Classes",
+            "Background", "alignment", "Conditions", "damage-type","Feats", "equipment-category", "Cost", "language-options", "ResourceList"};
     public LocRepo() {
 
         webClient = WebClient
@@ -28,7 +30,7 @@ public class LocRepo {
     public List<Result> getResults(String query) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
-                        .path(category + "/")
+                        .path(categories + "/" + query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
