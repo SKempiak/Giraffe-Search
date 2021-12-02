@@ -1,3 +1,6 @@
+
+package org.jointheleague.level7.giraffe.repository.dto;
+
 //package org.jointheleague.api.giraffe.Giraffe.Search.repository.dto;
 //
 //import com.fasterxml.jackson.annotation.JsonAlias;
@@ -39,7 +42,7 @@
 //    }
 //
 //}
-package org.jointheleague.api.giraffe.Giraffe.Search.repository.dto;
+
 
 import java.util.HashMap;
 import java.util.Map;
