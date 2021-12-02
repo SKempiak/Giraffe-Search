@@ -13,7 +13,7 @@ public class LocRepo {
     private final WebClient webClient;
 
     private static final String baseUrl = "https://www.dnd5eapi.co/api/";
-    String category = "ability-scores";
+
     public LocRepo() {
 
         webClient = WebClient
@@ -26,14 +26,40 @@ public class LocRepo {
     }
 
     public List<Result> getResults(String query) {
-        return webClient.get()
+        List<Result> Values = webClient.get()
                 .uri(uriBuilder -> uriBuilder
-                        .path(category + "/")
+                        .path(ability-scores + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
                 .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("spells" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("monsters" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("features" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+
+        return Values;
     }
 
 
