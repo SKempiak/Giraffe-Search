@@ -14,8 +14,7 @@ public class LocRepo {
     private final WebClient webClient;
 
     private static final String baseUrl = "https://www.dnd5eapi.co/api/";
-    String[] categories = {"ability-scores","Proficiency", "Flaws", "Race", "Classes",
-            "Background", "alignment", "Conditions", "damage-type","Feats", "equipment-category", "Cost", "language-options", "ResourceList"};
+
     public LocRepo() {
 
         webClient = WebClient
@@ -28,14 +27,106 @@ public class LocRepo {
     }
 
     public List<Result> getResults(String query) {
-        return webClient.get()
+        List<Result> Values = webClient.get()
                 .uri(uriBuilder -> uriBuilder
-                        .path(categories + "/" + query)
+                        .path("ability-scores" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
                 .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("spells" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("monsters" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("Feats" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("skills" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("feature" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("languages" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("race" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("resource-list" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+
+                        .path("saving-throw" + "/"+query)
+
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("spellcasting" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+        Values+=webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("traits" + "/"+query)
+                        .build()
+                ).retrieve()
+                .bodyToMono(LocResponse.class)
+                .block()
+                .getResults();
+
+        return Values;
     }
 
 
