@@ -6,6 +6,7 @@ import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -100,7 +101,9 @@ public class LocRepo {
                 .getResults();
         Values+=webClient.get()
                 .uri(uriBuilder -> uriBuilder
+
                         .path("saving-throw" + "/"+query)
+
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
