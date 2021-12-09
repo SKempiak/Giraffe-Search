@@ -10,62 +10,23 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "index",
-        "name",
-        "url"
-})
-@Generated("jsonschema2pojo")
+
+
+
 public class Result {
 
-    @JsonProperty("index")
-    private String index;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("url")
-    private String url;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    String name;
+    String subtitle;
+    String summary;
 
-    @JsonProperty("index")
-    public String getIndex() {
-        return index;
-    }
-
-    @JsonProperty("index")
-    public void setIndex(String index) {
-        this.index = index;
-    }
-
-    @JsonProperty("name")
-    public String getName() {
-        return name;
-    }
-
-    @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
     }
-
-    @JsonProperty("url")
-    public String getUrl() {
-        return url;
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
-
-    @JsonProperty("url")
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
 }
