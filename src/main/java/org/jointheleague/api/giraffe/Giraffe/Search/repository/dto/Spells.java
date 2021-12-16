@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @Generated("jsonschema2pojo")
 public class Spells {
 
+
     @JsonProperty("index")
     private String index;
     @JsonProperty("name")
@@ -263,6 +264,7 @@ public class Spells {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
+<<<<<<< HEAD
 public Result getResult(){
         Result r=new Result();
         r.setName(name);
@@ -294,3 +296,16 @@ public Result getResult(){
         return s;
     }
 }
+=======
+
+    public Result getResult() {
+        Result r=new Result();
+        r.setName(name);
+        r.setSubtitle();
+
+
+        return r;
+    }
+
+}
+>>>>>>> 72338224c07181c15c539a0166d152581957a0e3
