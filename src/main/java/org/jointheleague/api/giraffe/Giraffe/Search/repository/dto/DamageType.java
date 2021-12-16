@@ -19,7 +19,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "url"
 })
 @Generated("jsonschema2pojo")
-public class DamageType {
+public class
+DamageType {
 
     @JsonProperty("index")
     private String index;

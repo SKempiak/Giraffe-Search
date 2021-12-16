@@ -263,5 +263,34 @@ public class Spells {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
+public Result getResult(){
+        Result r=new Result();
+        r.setName(name);
+        r.setSubtitle(getSubtitle());
+        return r;
+}
 
+    private String getSubtitle() {
+        String s=new String();
+        if(level>0){
+            if(level==1){
+                s+= "1st level "+school;
+            }else if(level==2){
+                s+= "2nd level "+school;
+            }else if(level==3){
+                s+= "3rd level "+school;
+            }else{
+                s+= level+"th level "+school;
+            }
+        }else{
+            s+= school+" Cantrip";
+        }
+        if(damage!=null){
+            s+=", Damaging ("+damage.getDamageType().getName()+")";
+        }
+        if(concentration==true){
+            s+=", Concentration";
+        }
+        return s;
+    }
 }
