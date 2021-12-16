@@ -7,10 +7,10 @@ import java.util.List;
 
 
 public class LocResponse {
-    private List<Result> results = null;
+    private List<org.jointheleague.level7.giraffe.repository.dto.Result> results = null;
 
     @JsonProperty("results")
-    public List<Result> getResults() {
+    public List<org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result> getResults() {
         return results;
     }
 
