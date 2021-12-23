@@ -1,7 +1,10 @@
-package org.jointheleague.api.giraffe.Giraffe.Search.repository;
+package org.jointheleague.api.giraffe.Giraffe.Search.repository.dto;
 
 
-import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.LocResponse;
+
+import org.jointheleague.level7.giraffe.repository.dto.LocResponse;
+import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -25,104 +28,103 @@ public class LocRepo {
     }
 
     public List<Result> getResults(String query) {
-        List<Result> Values = webClient.get()
+        List<Result> Values = new ArrayList<Result>();
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("ability-scores" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
-        Values+=webClient.get()
+                .getResults());
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("spells" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
-        Values+=webClient.get()
+                .getResults());
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("monsters" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
-        Values+=webClient.get()
+                .getResults());
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("Feats" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
-        Values+=webClient.get()
+                .getResults());
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("skills" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
-        Values+=webClient.get()
+                .getResults());
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("feature" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
-        Values+=webClient.get()
+                .getResults());
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("languages" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
-        Values+=webClient.get()
+                .getResults());
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("race" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
-        Values+=webClient.get()
+                .getResults());
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("resource-list" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
-        Values+=webClient.get()
+                .getResults());
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
-
                         .path("saving-throw" + "/"+query)
-
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
-        Values+=webClient.get()
+                .getResults());
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("spellcasting" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
-        Values+=webClient.get()
+                .getResults());
+        Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("traits" + "/"+query)
                         .build()
                 ).retrieve()
                 .bodyToMono(LocResponse.class)
                 .block()
-                .getResults();
+                .getResults());
 
         return Values;
     }
