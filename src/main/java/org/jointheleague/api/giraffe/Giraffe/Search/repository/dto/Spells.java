@@ -264,13 +264,6 @@ public class Spells {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-<<<<<<< HEAD
-public Result getResult(){
-        Result r=new Result();
-        r.setName(name);
-        r.setSubtitle(getSubtitle());
-        return r;
-}
 
     private String getSubtitle() {
         String s=new String();
@@ -295,17 +288,18 @@ public Result getResult(){
         }
         return s;
     }
-}
-=======
+
+
+
 
     public Result getResult() {
         Result r=new Result();
         r.setName(name);
-        r.setSubtitle();
-
+        r.setSubtitle(getSubtitle());
+        r.setSummary(desc.get(0));
 
         return r;
     }
 
 }
->>>>>>> 72338224c07181c15c539a0166d152581957a0e3
+
