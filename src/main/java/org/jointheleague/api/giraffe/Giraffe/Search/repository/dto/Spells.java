@@ -293,6 +293,7 @@ public class Spells {
 
 
     public Result getResult() {
+        System.out.println("its working (mostly)");
         Result r=new Result();
         r.setName(name);
         r.setSubtitle(getSubtitle());

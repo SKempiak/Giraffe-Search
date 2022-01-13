@@ -211,7 +211,7 @@ public class Monster {
         Result r=new Result();
         r.setName(name);
         r.setSubtitle(getSubtitle());
-        r.setSummary(desc.get(0));
+        r.setSummary(getDesc());
 
         return r;
     }
@@ -232,7 +232,7 @@ public class Monster {
             d+="AC: "+armorClass;
             d+=" HP: "+hitPoints+" ("+hitDice+"+"+mathoplex()+")";
             d+="\n";
-            d+="Strength -- "+stength;
+            d+="Strength -- "+strength;
         d+="\n";
         d+="Dexterity -- "+dexterity;
         d+="\n";

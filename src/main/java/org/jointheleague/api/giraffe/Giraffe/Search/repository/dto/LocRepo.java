@@ -29,6 +29,7 @@ public class LocRepo {
     }
 
     public List<Result> getResults(String query) {
+        System.out.println("frontend has connected to frontend");
         List<Result> Values = new ArrayList<Result>();
         Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
