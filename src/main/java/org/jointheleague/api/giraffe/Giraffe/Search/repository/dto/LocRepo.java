@@ -1,8 +1,10 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.repository.dto;
 
 
+
 import org.jointheleague.level7.giraffe.repository.dto.LocResponse;
 import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -27,6 +29,7 @@ public class LocRepo {
     }
 
     public List<Result> getResults(String query) {
+        System.out.println("frontend has connected to frontend");
         List<Result> Values = new ArrayList<Result>();
         Values.addAll(webClient.get()
                 .uri(uriBuilder -> uriBuilder
