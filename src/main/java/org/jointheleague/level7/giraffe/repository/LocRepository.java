@@ -1,8 +1,8 @@
 package org.jointheleague.level7.giraffe.repository;
 
 
+import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 import org.jointheleague.level7.giraffe.repository.dto.LocResponse;
-import org.jointheleague.level7.giraffe.repository.dto.Result;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 

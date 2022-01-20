@@ -1,7 +1,7 @@
 package org.jointheleague.level7.giraffe.service;
 
+import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 import org.jointheleague.level7.giraffe.repository.LocRepository;
-import org.jointheleague.level7.giraffe.repository.dto.Result;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
