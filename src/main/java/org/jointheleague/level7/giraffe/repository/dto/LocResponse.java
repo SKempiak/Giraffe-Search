@@ -2,15 +2,16 @@ package org.jointheleague.level7.giraffe.repository.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 
 import java.util.List;
 
 
 public class LocResponse {
-    private List<org.jointheleague.level7.giraffe.repository.dto.Result> results = null;
+    private List<Result> results = null;
 
     @JsonProperty("results")
-    public List<org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result> getResults() {
+    public List<Result> getResults() {
         return results;
     }
 

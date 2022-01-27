@@ -1,6 +1,6 @@
 package org.jointheleague.level7.giraffe.presentation;
 
-import org.jointheleague.level7.giraffe.repository.dto.Result;
+import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 import org.jointheleague.level7.giraffe.service.LocService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package org.jointheleague.level7.giraffe.Giraffe.Search.Repository;
 
+import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 import org.jointheleague.level7.giraffe.repository.LocRepository;
 import org.jointheleague.level7.giraffe.repository.dto.LocResponse;
-import org.jointheleague.level7.giraffe.repository.dto.Result;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
