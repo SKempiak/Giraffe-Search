@@ -2,7 +2,9 @@ package org.jointheleague.api.giraffe.Giraffe.Search.repository.dto;
 
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -207,13 +209,16 @@ public class Monster {
             this.additionalProperties.put(name, value);
         }
 
-    public Result getResult() {
+    public List <Result> getResult() {
         Result r=new Result();
         r.setName(name);
         r.setSubtitle(getSubtitle());
         r.setSummary(getDesc());
 
-        return r;
+        List<Result> tortle;
+        tortle=new ArrayList<Result>();
+        tortle.add(r);
+        return tortle;
     }
 
     public String getSubtitle(){
