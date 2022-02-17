@@ -95,4 +95,14 @@ public class MagicItems {
         this.additionalProperties.put(name, value);
     }
 
+    public Result getResult() {
+        System.out.println("its working (mostly)");
+        Result r=new Result();
+        r.setName(name);
+        r.setSubtitle(equipmentCategory.getName());
+        r.setSummary(desc.get(0));
+
+        return r;
+    }
+
 }
