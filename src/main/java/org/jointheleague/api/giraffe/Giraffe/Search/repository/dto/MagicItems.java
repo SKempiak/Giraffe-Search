@@ -1,5 +1,6 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.repository.dto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,14 +96,17 @@ public class MagicItems {
         this.additionalProperties.put(name, value);
     }
 
-    public Result getResult() {
+    public List <Result> getResult() {
         System.out.println("its working (mostly)");
         Result r=new Result();
         r.setName(name);
         r.setSubtitle(equipmentCategory.getName());
         r.setSummary(desc.get(0));
 
-        return r;
+        List <Result> tortle;
+        tortle=new ArrayList<Result>();
+        tortle.add(r);
+        return tortle;
     }
 
 }
