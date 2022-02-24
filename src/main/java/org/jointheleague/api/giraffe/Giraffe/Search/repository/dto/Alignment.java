@@ -1,6 +1,8 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.repository.dto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -66,6 +68,16 @@ public class Alignment {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    public List<Result> getResult() {
+        List<Result> results = new ArrayList<Result>();
+        Result result = new Result();
+        result.setName(name);
+        result.setSubtitle(getIndex());
+        result.setSummary(getUrl());
+        results.add(result);
+        return results;
     }
 
 }

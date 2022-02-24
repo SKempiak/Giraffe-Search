@@ -1,5 +1,6 @@
 package org.jointheleague.api.giraffe.Giraffe.Search.repository.dto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class Background {
     @JsonProperty("name")
     private String name;
     @JsonProperty("starting_proficiencies")
-    private List<StartingProficiency> startingProficiencies = null;
+    private List<Proficiency> startingProficiencies = null;
     @JsonProperty("language_options")
     private LanguageOptions languageOptions;
     @JsonProperty("starting_equipment")
@@ -74,12 +75,12 @@ public class Background {
     }
 
     @JsonProperty("starting_proficiencies")
-    public List<StartingProficiency> getStartingProficiencies() {
+    public List<Proficiency> getStartingProficiencies() {
         return startingProficiencies;
     }
 
     @JsonProperty("starting_proficiencies")
-    public void setStartingProficiencies(List<StartingProficiency> startingProficiencies) {
+    public void setStartingProficiencies(List<Proficiency> startingProficiencies) {
         this.startingProficiencies = startingProficiencies;
     }
 
@@ -171,6 +172,36 @@ public class Background {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    public String mergeSubList() {
+        String profs = "";
+        for (int i = 0; i < startingProficiencies.size(); i++) {
+            if (startingProficiencies.size() - 1 == i) {
+                profs = profs + startingProficiencies.get(i).getName();
+            } else {
+                profs = profs + startingProficiencies.get(i).getName().replace("Skill: ", "") + ", ";
+            }
+        }
+        return profs;
+    }
+
+    public String mergeDesc() {
+        String descriptions = "";
+        for (int i = 0; i < startingProficiencies.size(); i++) {
+                descriptions = descriptions + feature.getDesc().get(i);
+        }
+        return descriptions;
+    }
+
+    public List<Result> getFinalResult() {
+        List<Result> results = new ArrayList<Result>();
+        Result result = new Result();
+        result.setName(getName());
+        result.setSubtitle(mergeSubList());
+        result.setSummary(mergeDesc());
+        results.add(result);
+        return results;
     }
 
 }
