@@ -21,22 +21,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @Generated("jsonschema2pojo")
 public class Result {
 
-    @JsonProperty("name")
+
     String name;
-    @JsonProperty("subtitle")
+
     String subtitle;
-    @JsonProperty("summary")
+
     String summary;
 
-    @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
     }
-    @JsonProperty("subtitle")
+
     public void setSubtitle(String subtitle) {
         this.subtitle = subtitle;
     }
-    @JsonProperty("summary")
+
     public void setSummary(String summary) {
         this.summary = summary;
     }

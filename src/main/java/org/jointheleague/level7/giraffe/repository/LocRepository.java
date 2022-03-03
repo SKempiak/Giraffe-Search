@@ -2,6 +2,7 @@ package org.jointheleague.level7.giraffe.repository;
 
 
 import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.AbilityScores;
+import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Alignment;
 import org.jointheleague.api.giraffe.Giraffe.Search.repository.dto.Result;
 import org.jointheleague.level7.giraffe.repository.dto.LocResponse;
 import org.springframework.stereotype.Repository;
@@ -83,9 +84,9 @@ public class LocRepository {
             List<Result> results = webClient.get()
                     .uri(uriBuilder -> uriBuilder.query("alignment/" + tempMod).build()
                     ).retrieve()
-                    .bodyToMono(LocResponse.class)
+                    .bodyToMono(Alignment.class)
                     .block()
-                    .getResults();
+                    .getFinalResult();
 
             System.out.println(tempMod);
 

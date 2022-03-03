@@ -70,7 +70,7 @@ public class Alignment {
         this.additionalProperties.put(name, value);
     }
 
-    public List<Result> getResult() {
+    public List<Result> getFinalResult() {
         List<Result> results = new ArrayList<Result>();
         Result result = new Result();
         result.setName(name);
