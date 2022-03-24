@@ -19,19 +19,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Prerequisite {
 
     @JsonProperty("ability_score")
-    private AbilityScore abilityScore;
+    private AbilityScores abilityScore;
     @JsonProperty("minimum_score")
     private Integer minimumScore;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("ability_score")
-    public AbilityScore getAbilityScore() {
+    public AbilityScores getAbilityScore() {
         return abilityScore;
     }
 
     @JsonProperty("ability_score")
-    public void setAbilityScore(AbilityScore abilityScore) {
+    public void setAbilityScore(AbilityScores abilityScore) {
         this.abilityScore = abilityScore;
     }
 

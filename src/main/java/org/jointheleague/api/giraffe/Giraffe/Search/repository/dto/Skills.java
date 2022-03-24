@@ -29,7 +29,7 @@ public class Skills {
     @JsonProperty("desc")
     private List<String> desc = null;
     @JsonProperty("ability_score")
-    private AbilityScore abilityScore;
+    private AbilityScores abilityScore;
     @JsonProperty("url")
     private String url;
     @JsonIgnore
@@ -66,12 +66,12 @@ public class Skills {
     }
 
     @JsonProperty("ability_score")
-    public AbilityScore getAbilityScore() {
+    public AbilityScores getAbilityScore() {
         return abilityScore;
     }
 
     @JsonProperty("ability_score")
-    public void setAbilityScore(AbilityScore abilityScore) {
+    public void setAbilityScore(AbilityScores abilityScore) {
         this.abilityScore = abilityScore;
     }
 

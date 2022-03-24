@@ -27,17 +27,14 @@ public class LocController {
     @GetMapping("/searchLocResults")
     @ApiOperation(value = "Searches for articles matching the search term",
             notes = "Response may include multiple Result values.",
-            response = Result.class)
+            response = Result.class,
+            responseContainer = "List")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Result(s) found"),
             @ApiResponse(code = 404, message = "Result(s) not found")
     })
-    public List<Result> getResults(@RequestParam(value="q") String query){
-        List<Result> results = locService.getResults(query);
-        if(CollectionUtils.isEmpty(results)){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result(s) not found.");
-        }
-        return results;
+    public String getResults(@RequestParam(value="q") String query){
+        return locService.getResults(query);
     }
 
 }
