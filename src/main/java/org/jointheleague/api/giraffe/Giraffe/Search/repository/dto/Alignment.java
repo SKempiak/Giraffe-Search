@@ -18,69 +18,77 @@ public class Alignment {
     private String abbreviation;
     @JsonProperty("desc")
     private String desc;
-    @JsonAlias("url")
+    @JsonProperty("url")
     private String url;
     @JsonProperty("index")
     private String index;
-    @JsonAlias("count")
-    private int count;
+    @JsonProperty("count")
+    private int count = -1;
     @JsonProperty("results")
     private List<Alignment> results;
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-
+    @JsonProperty("index")
     public String getIndex() {
         return index;
     }
 
-
+    @JsonProperty("index")
     public void setIndex(String index) {
         this.index = index;
     }
 
-
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
 
-
+    @JsonProperty("name")
     public void setName(String name) {
+        System.out.println(name);
         this.name = name;
     }
 
-
+    @JsonProperty("url")
     public String getUrl() {
         return url;
     }
 
-
+    @JsonProperty("url")
     public void setUrl(String url) {
         this.url = url;
     }
 
-
+    @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
     }
 
-
+    @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
 
+    @JsonProperty("abbreviation")
     public void setAbbreviation(String newAbb) {abbreviation = newAbb;}
 
+    @JsonProperty("abbreviation")
     public String getAbbreviation() {return abbreviation;}
 
+    @JsonProperty("desc")
     public void setDescription(String newDesc) {desc = newDesc;}
 
+    @JsonProperty("desc")
     public String getDescription() {return desc;}
 
+    @JsonProperty("count")
     public void setCount(int count) {this.count = count;}
 
+    @JsonProperty("count")
     public int getCount() {return count;}
+
     @JsonProperty("results")
     public void setAlignments(List<Alignment> alignments) {this.results = alignments;}
     @JsonProperty("results")
@@ -90,7 +98,7 @@ public class Alignment {
         List<Result> results = new ArrayList<Result>();
         Result result = new Result();
 
-        if (count == 0) {
+        if (count == -1) {
             result.setName(getName());
             result.setSubtitle(getAbbreviation());
             result.setSummary(getDescription());
@@ -102,6 +110,6 @@ public class Alignment {
 //            result.setSubtitle(getCount());
             System.out.println(getCount() + " " + getAlignments().size());
         }
-        return null;
+        return results;
     }
 }

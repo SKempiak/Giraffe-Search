@@ -9,15 +9,8 @@ import java.util.List;
 @Service
 public class LocService {
 
-    private final LocRepository locRepository;
-
-    public LocService(LocRepository locRepository) {
-
-        this.locRepository = locRepository;
-    }
-
-    public List<Result> getResults(String query) {
-        return locRepository.getResults(query);
+    public String getResults(String query) {
+        return "searching for a dnd object related to " + query;
     }
 
 }
